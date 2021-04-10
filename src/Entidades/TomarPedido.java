@@ -25,15 +25,16 @@ public class TomarPedido {
     private Consecutivo consecutivo;
     private String nombreCliente;
     private String cedula;
-    private Date fecha;
+    private String fecha;
     private int cantidadProducto;
     private double total;
     private String nombreMotorizado;
     private double distancia;
-    private Time tiempoEntrega; //revisar este
+    private String tiempoEntrega; //revisar este
+    private String orden;
     ArrayList<TomarPedido> pedido = new ArrayList<>();
 
-    public TomarPedido(Consecutivo consecutivo, String nombreCliente, String cedula, Date fecha, int cantidadProducto, double total, String nombreMotorizado, double distancia, Time tiempoEntrega) {
+    public TomarPedido(Consecutivo consecutivo, String nombreCliente, String cedula, String fecha, int cantidadProducto, double total, String nombreMotorizado, double distancia, String tiempoEntrega, String orden) {
         this.consecutivo = consecutivo;
         this.nombreCliente = nombreCliente;
         this.cedula = cedula;
@@ -43,9 +44,19 @@ public class TomarPedido {
         this.nombreMotorizado = nombreMotorizado;
         this.distancia = distancia;
         this.tiempoEntrega = tiempoEntrega;
+        this.orden = orden;
     }
-    
-    
+
+    public TomarPedido() {
+    }
+
+    public String getOrden() {
+        return orden;
+    }
+
+    public void setOrden(String orden) {
+        this.orden = orden;
+    }
 
     public Consecutivo getConsecutivo() {
         return consecutivo;
@@ -71,14 +82,6 @@ public class TomarPedido {
     public void setCedula(String cedula) {
         cedula = JOptionPane.showInputDialog("Digite la cedula del cliente");
         cedula = this.cedula;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
     }
 
     public int getCantidadProducto() {
@@ -115,11 +118,19 @@ public class TomarPedido {
         this.distancia = distancia;
     }
 
-    public Time getTiempoEntrega() {
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getTiempoEntrega() {
         return tiempoEntrega;
     }
 
-    public void setTiempoEntrega(Time tiempoEntrega) {
+    public void setTiempoEntrega(String tiempoEntrega) {
         this.tiempoEntrega = tiempoEntrega;
     }
 
