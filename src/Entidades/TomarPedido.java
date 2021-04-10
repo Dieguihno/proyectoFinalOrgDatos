@@ -11,8 +11,7 @@ máximo). Este árbol se ordena por número de pedido.
  */
 package Entidades;
 
-import java.sql.Time;
-import java.util.Date;
+
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -22,7 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class TomarPedido {
 
-    private Consecutivo consecutivo;
+    private int consecutivo;
     private String nombreCliente;
     private String cedula;
     private String fecha;
@@ -34,7 +33,7 @@ public class TomarPedido {
     private String orden;
     ArrayList<TomarPedido> pedido = new ArrayList<>();
 
-    public TomarPedido(Consecutivo consecutivo, String nombreCliente, String cedula, String fecha, int cantidadProducto, double total, String nombreMotorizado, double distancia, String tiempoEntrega, String orden) {
+    public TomarPedido(int consecutivo, String nombreCliente, String cedula, String fecha, int cantidadProducto, double total, String nombreMotorizado, double distancia, String tiempoEntrega, String orden) {
         this.consecutivo = consecutivo;
         this.nombreCliente = nombreCliente;
         this.cedula = cedula;
@@ -58,11 +57,11 @@ public class TomarPedido {
         this.orden = orden;
     }
 
-    public Consecutivo getConsecutivo() {
+    public int getConsecutivo() {
         return consecutivo;
     }
 
-    public void setConsecutivo(Consecutivo consecutivo) {
+    public void setConsecutivo(int consecutivo) {
         this.consecutivo = consecutivo;
     }
 
