@@ -5,9 +5,11 @@
  */
 package lacasitademiabuela;
 
+import Entidades.TomarPedido;
 import java.util.Date;
-import javafx.scene.control.ComboBox;
-import javax.swing.JComboBox;
+import java.util.ArrayList;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,8 +20,96 @@ public class Pedido extends javax.swing.JInternalFrame {
     /**
      * Creates new form Pedido
      */
+    int contador = 0;
+
     public Pedido() {
         initComponents();
+    }
+
+    private TomarPedido capturaPedido() { //importar clase pedido
+        
+
+        TomarPedido pedido = new TomarPedido(); //nuevo pedido
+        String productos = jTextAreaPedidoComida.getText();
+        ArrayList<String> prductos = new ArrayList<>(Arrays.asList(productos)); //esto es para convertir el string del jtextArea a un arraylist
+        pedido.setOrden(jTextFieldOrden.getText());
+        pedido.setNombreCliente(jTextFieldNombreCliente.getText());
+        pedido.setCedula(jTextFieldCedulaCliente.getText());
+        pedido.setFecha(jFormattedTextFieldFechaYHora.getText());
+        pedido.setPedido(prductos); //hacer que el jArea haga un arraylist
+        pedido.setNombreMotorizado(jComboBoxMotorizado.getSelectedItem().toString()); //revisar si el get esta bien
+        pedido.setDistancia(Double.parseDouble(jTextFieldDistancia.getText()));
+        pedido.setTiempoEntrega(jTextFieldTiempoEntrega.getText());
+
+        return pedido;
+    }
+
+    private boolean validar() { //validar que la info este completa
+        return true;
+
+    }
+
+    public boolean precios() {
+
+        int cantidad = Integer.parseInt(jTextFieldCantidad.getText());
+        if (jComboBoxProductos.getSelectedItem().equals("Bebida natural")) {
+            jTextAreaPedidoComida.setText(jComboBoxProductos.getSelectedItem().toString());
+            jTextAreaPedidoComida.setText(jTextFieldCantidad.getText());
+            jTextAreaPedidoComida.setText("1000");
+            jTextAreaPedidoComida.setText((cantidad * 1000));
+            contador++;
+        }
+        if (jComboBoxProductos.getSelectedItem().equals("Bebida gaseosa")) {
+            jTextAreaPedidoComida.setText(jComboBoxProductos.getSelectedItem().toString());
+            jTextAreaPedidoComida.setText(jTextFieldCantidad.getText());
+            jTextAreaPedidoComida.setText("1200");
+            jTextAreaPedidoComida.setText((cantidad * 1200));
+            contador++;
+        }
+        if (jComboBoxProductos.getSelectedItem().equals("Bebida caliente")) {
+            jTextAreaPedidoComida.setText(jComboBoxProductos.getSelectedItem().toString());
+            jTextAreaPedidoComida.setText(jTextFieldCantidad.getText());
+            jTextAreaPedidoComida.setText("800");
+            jTextAreaPedidoComida.setText((cantidad * 800));
+            contador++;
+        }
+        if (jComboBoxProductos.getSelectedItem().equals("Leche")) {
+            jTextAreaPedidoComida.setText(jComboBoxProductos.getSelectedItem().toString());
+            jTextAreaPedidoComida.setText(jTextFieldCantidad.getText());
+            jTextAreaPedidoComida.setText("600");
+            jTextAreaPedidoComida.setText((cantidad * 600));
+            contador++;
+        }
+        if (jComboBoxProductos.getSelectedItem().equals("Desayuno")) {
+            jTextAreaPedidoComida.setText(jComboBoxProductos.getSelectedItem().toString());
+            jTextAreaPedidoComida.setText(jTextFieldCantidad.getText());
+            jTextAreaPedidoComida.setText("2500");
+            jTextAreaPedidoComida.setText((cantidad * 2500));
+            contador++;
+        }
+        if (jComboBoxProductos.getSelectedItem().equals("Almuerzo")) {
+           jTextAreaPedidoComida.setText(jComboBoxProductos.getSelectedItem().toString());
+            jTextAreaPedidoComida.setText(jTextFieldCantidad.getText());
+            jTextAreaPedidoComida.setText("3500");
+            jTextAreaPedidoComida.setText((cantidad * 3500));
+            contador++;;
+        }
+        if (jComboBoxProductos.getSelectedItem().equals("Gallo")) {
+            jTextAreaPedidoComida.setText(jComboBoxProductos.getSelectedItem().toString());
+            jTextAreaPedidoComida.setText(jTextFieldCantidad.getText());
+            jTextAreaPedidoComida.setText("1200");
+            jTextAreaPedidoComida.setText((cantidad * 1200));
+            contador++;
+        }
+        if (jComboBoxProductos.getSelectedItem().equals("Gallo")) {
+            jTextAreaPedidoComida.setText(jComboBoxProductos.getSelectedItem().toString());
+            jTextAreaPedidoComida.setText(jTextFieldCantidad.getText());
+            jTextAreaPedidoComida.setText("500");
+            jTextAreaPedidoComida.setText((cantidad * 500));
+            contador++;
+        }
+        return false;
+
     }
 
     /**
@@ -93,6 +183,7 @@ public class Pedido extends javax.swing.JInternalFrame {
             }
         });
 
+        jTextFieldCantidad.setText("1");
         jTextFieldCantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldCantidadActionPerformed(evt);
@@ -116,6 +207,7 @@ public class Pedido extends javax.swing.JInternalFrame {
 
         jButtonEliminarDelPedido.setText("Eliminar");
 
+        jFormattedTextFieldFechaYHora.setEditable(false);
         jFormattedTextFieldFechaYHora.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance())));
         jFormattedTextFieldFechaYHora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +224,11 @@ public class Pedido extends javax.swing.JInternalFrame {
         jComboBoxMotorizado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Jeffrey", "Pablo", "Ernesto" }));
 
         jButtonRealizarPedido.setText("Realizar pedido");
+        jButtonRealizarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRealizarPedidoActionPerformed(evt);
+            }
+        });
 
         jTableCancelados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -162,6 +259,7 @@ public class Pedido extends javax.swing.JInternalFrame {
 
         jLabel10.setText("Numero de orden");
 
+        jTextFieldOrden.setEditable(false);
         jTextFieldOrden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldOrdenActionPerformed(evt);
@@ -361,13 +459,22 @@ public class Pedido extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextFieldCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCantidadActionPerformed
-      String cantidad = jTextFieldCantidad.getText();
-       String productos = jComboBoxProductos.getItemAt(WIDTH);
-        
+
     }//GEN-LAST:event_jTextFieldCantidadActionPerformed
 
     private void jButtonAgregarAlPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarAlPedidoActionPerformed
-        // TODO add your handling code here:
+        try {
+
+            if (jTextFieldCantidad.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(rootPane, "digite la cantidad de producto que desea ordenar");
+            }
+            precios();
+
+        } catch (Exception e) {
+        } finally {
+            jTextFieldCantidad.setText("1");
+
+        }
     }//GEN-LAST:event_jButtonAgregarAlPedidoActionPerformed
 
     private void jTextFieldNombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreClienteActionPerformed
@@ -377,7 +484,7 @@ public class Pedido extends javax.swing.JInternalFrame {
     private void jFormattedTextFieldFechaYHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldFechaYHoraActionPerformed
         Date hora = new Date();
         hora.setTime(WIDTH);
-        System.out.println(hora);
+        
     }//GEN-LAST:event_jFormattedTextFieldFechaYHoraActionPerformed
 
     private void jTextFieldOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldOrdenActionPerformed
@@ -386,9 +493,21 @@ public class Pedido extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextFieldOrdenActionPerformed
 
     private void jComboBoxProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxProductosActionPerformed
-        
-        
+
+
     }//GEN-LAST:event_jComboBoxProductosActionPerformed
+
+    private void jButtonRealizarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRealizarPedidoActionPerformed
+        // TODO add your handling code here:
+        //aqui
+        
+        if (validar()){
+            try {
+                capturaPedido();
+            } catch (Exception e) {
+            }
+        }
+    }//GEN-LAST:event_jButtonRealizarPedidoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -428,3 +547,4 @@ public class Pedido extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextFieldTiempoEntrega;
     // End of variables declaration//GEN-END:variables
 }
+

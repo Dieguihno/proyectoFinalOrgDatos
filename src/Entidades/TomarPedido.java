@@ -25,21 +25,17 @@ public class TomarPedido {
     private String nombreCliente;
     private String cedula;
     private String fecha;
-    private int cantidadProducto;
-    private double total;
     private String nombreMotorizado;
     private double distancia;
     private String tiempoEntrega; //revisar este
     private String orden;
-    ArrayList<TomarPedido> pedido = new ArrayList<>();
+    ArrayList<String> pedido = new ArrayList<>();
 
-    public TomarPedido(int consecutivo, String nombreCliente, String cedula, String fecha, int cantidadProducto, double total, String nombreMotorizado, double distancia, String tiempoEntrega, String orden) {
+    public TomarPedido(int consecutivo, String nombreCliente, String cedula, String fecha, String nombreMotorizado, double distancia, String tiempoEntrega, String orden) {
         this.consecutivo = consecutivo;
         this.nombreCliente = nombreCliente;
         this.cedula = cedula;
         this.fecha = fecha;
-        this.cantidadProducto = cantidadProducto;
-        this.total = total;
         this.nombreMotorizado = nombreMotorizado;
         this.distancia = distancia;
         this.tiempoEntrega = tiempoEntrega;
@@ -83,23 +79,6 @@ public class TomarPedido {
         cedula = this.cedula;
     }
 
-    public int getCantidadProducto() {
-        return cantidadProducto;
-    }
-
-    public void setCantidadProducto(int cantidadProducto) {
-        JOptionPane.showInputDialog("Ingrese los productos que solicita el cliente");
-        cantidadProducto = this.cantidadProducto;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
     public String getNombreMotorizado() {
         return nombreMotorizado;
     }
@@ -133,11 +112,11 @@ public class TomarPedido {
         this.tiempoEntrega = tiempoEntrega;
     }
 
-    public ArrayList<TomarPedido> getPedido() {
+    public ArrayList<String> getPedido() {
         return pedido;
     }
 
-    public void setPedido(ArrayList<TomarPedido> pedido) {
+    public void setPedido(ArrayList<String> pedido) {
         this.pedido = pedido;
     }
 
