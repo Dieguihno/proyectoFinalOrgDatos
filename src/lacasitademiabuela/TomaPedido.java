@@ -1,4 +1,4 @@
-package presentacion;
+package lacasitademiabuela;
 
 import Entidades.*;
 import java.awt.List;
@@ -10,13 +10,18 @@ import javax.swing.table.TableModel;
 
 public class TomaPedido extends javax.swing.JFrame {
 
-    private DefaultTableModel modelo;    
+    private DefaultTableModel modelo;
+    private DefaultTableModel ordenes;
+    private DefaultTableModel productos;
     int contador = 0;
     int contadorCliente = 0;
     Date fecha = new Date();
 
     public TomaPedido() {
         initComponents();
+        modelo = (DefaultTableModel) jTablePedidosCancelados.getModel();
+        ordenes = (DefaultTableModel) jTable1.getModel();
+        productos = (DefaultTableModel) jTable2.getModel();
 
     }
 
@@ -36,26 +41,23 @@ public class TomaPedido extends javax.swing.JFrame {
         jTextFieldDireccion.setText("");
         jTextFieldDistancia.setText("");
         jTextFieldTiempoEntrega.setText("");
-       
+
     }
-    
-    public void limpiarTabla (){
+
+    public void limpiarTabla() {
         int a = jTable2.getRowCount();
-        for (int i = 0; i <a; i++){
-            jTable2.removeAll();
+        for (int i = 0; i < a; i++) {
+            productos.removeRow(i);
         }
     }
-    
 
     private void eliminarProducto() {
-        for (int i = 0; i < jTable2.getRowCount(); i++) {
-            jTable2.removeRowSelectionInterval(i-1,i);  //revisar este metodo
-            i -= 1;
-        }
+        int eliminar = jTable2.getSelectedRow();
+        productos.removeRow(eliminar);
     }
 
     public boolean precios() {
-        
+
         int cantidad = Integer.parseInt(jTextFieldCantidad.getText());
         if (jComboBox1.getSelectedItem().equals("Bebida natural")) {
             jTable2.setValueAt(jComboBox1.getSelectedItem().toString(), contador, 0);
@@ -221,10 +223,10 @@ public class TomaPedido extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel2))
-                                .addGap(2, 2, 2)
+                                .addGap(12, 12, 12)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
@@ -234,9 +236,9 @@ public class TomaPedido extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(39, 39, 39)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextFieldDistancia)
-                                            .addComponent(jTextFieldTelefono)
-                                            .addComponent(jTextFieldDireccion)))
+                                            .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jTextFieldDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jTextFieldDistancia, javax.swing.GroupLayout.Alignment.TRAILING)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -411,8 +413,18 @@ public class TomaPedido extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTablePedidosCancelados);
 
         jButtonAnularPedido.setText("Anular Pedido");
+        jButtonAnularPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAnularPedidoActionPerformed(evt);
+            }
+        });
 
         jButtonPedidoEntregado.setText("Pedido Entregado");
+        jButtonPedidoEntregado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPedidoEntregadoActionPerformed(evt);
+            }
+        });
 
         jButtonReanudarPedido.setText("Reanudar pedido");
 
@@ -505,8 +517,7 @@ public class TomaPedido extends javax.swing.JFrame {
 
                 limpiar();
                 limpiarTabla();
-                
-                
+
             }
 
         }
@@ -520,9 +531,9 @@ public class TomaPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
-        
+
         try {
-            
+
             if (jTextFieldCantidad.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(rootPane, "digite la cantidad de producto que desea ordenar");
             }
@@ -547,13 +558,42 @@ public class TomaPedido extends javax.swing.JFrame {
             eliminarProducto();
         } catch (Exception e) {
         }
-        
+
 
     }//GEN-LAST:event_jButtonEliminarProductoActionPerformed
 
     private void jTablePedidosCanceladosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePedidosCanceladosMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jTablePedidosCanceladosMouseClicked
+
+    private void jButtonPedidoEntregadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPedidoEntregadoActionPerformed
+        // TODO add your handling code here:
+        // eliminar la fila seleccionada
+        int entregado = jTable1.getSelectedRow();
+        ordenes.removeRow(entregado);
+        
+        
+    }//GEN-LAST:event_jButtonPedidoEntregadoActionPerformed
+
+    private void jButtonAnularPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnularPedidoActionPerformed
+        // TODO add your handling code here:
+        //mover la jtable1 a jtableAnulados
+        int anular = jTable1.getSelectedRow();
+
+        if (anular != -1) {
+            Object[] filaSeleccionada = {
+                jTable1.getValueAt(anular, 0), jTable1.getValueAt(anular, 1),
+                jTable1.getValueAt(anular, 2), jTable1.getValueAt(anular, 3),
+                jTable1.getValueAt(anular, 4), jTable1.getValueAt(anular, 5),
+                jTable1.getValueAt(anular, 6), jTable1.getValueAt(anular, 7),
+                jTable1.getValueAt(anular, 8), jTable1.getValueAt(anular, 9)
+            };
+            modelo.addRow(filaSeleccionada);
+        }
+
+       ordenes.removeRow(anular);
+
+    }//GEN-LAST:event_jButtonAnularPedidoActionPerformed
 
     /**
      * @param args the command line arguments
