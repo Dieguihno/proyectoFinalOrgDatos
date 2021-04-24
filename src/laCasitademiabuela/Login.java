@@ -1,5 +1,5 @@
 
-package lacasitademiabuela;
+package laCasitademiabuela;
 
 import javax.swing.JOptionPane;
 
@@ -24,11 +24,24 @@ public class Login extends javax.swing.JFrame {
         jButtonSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 166, 180));
 
+        jLabel1.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 166, 180));
         jLabel1.setText("Usuario");
 
+        jLabel2.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 166, 180));
         jLabel2.setText("Clave");
 
+        jTextFieldUsuario.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        jTextFieldUsuario.setForeground(new java.awt.Color(0, 166, 180));
+
+        jPassword.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        jPassword.setForeground(new java.awt.Color(0, 166, 180));
+
+        jButtonIngresar.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        jButtonIngresar.setForeground(new java.awt.Color(0, 166, 180));
         jButtonIngresar.setText("Ingresar");
         jButtonIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -36,7 +49,9 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jButtonSalir.setText("salir");
+        jButtonSalir.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        jButtonSalir.setForeground(new java.awt.Color(0, 166, 180));
+        jButtonSalir.setText("Salir");
         jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalirActionPerformed(evt);
@@ -52,7 +67,7 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonIngresar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                         .addComponent(jButtonSalir))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -62,7 +77,7 @@ public class Login extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
                             .addComponent(jPassword))))
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,7 +94,7 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonIngresar)
                     .addComponent(jButtonSalir))
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         pack();
@@ -142,6 +157,7 @@ public class Login extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
